@@ -23,3 +23,11 @@
 
 ** Functions in the same coroutine scope waits result of each other
 
+------ jobs (JobActivity) -------
+
+   Completable job is a job that has 2 methods with job default functions.
+
+    1 - CompleteJob - You can complete job with this method.
+    2 - CompleteExceptionally - You can complete and throw an exception with this method
+
+
