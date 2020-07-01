@@ -30,4 +30,13 @@
     1 - CompleteJob - You can complete job with this method.
     2 - CompleteExceptionally - You can complete and throw an exception with this method
 
+    CoroutineScope(IO + job).launch --> + means when you cancel the IO scope
+    all IO scope jobs will be cancelled. If you pass your job with + in the scope
+    when you cancel the scope only the job will be cancelled
+
+
+----- Async and await --------
+
+    Suspend functions in the same coroutine scope waits each other, however
+    jobs don't wait each other in the same coroutineScope
 
