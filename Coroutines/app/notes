@@ -1,0 +1,25 @@
+** Coroutine is not a thread. Coroutine means is a job
+
+    --- Thread ----
+       * Job#1 (coroutine 1)
+       * Job#2 (coroutine 2)
+       * Job#3 (coroutine 3)
+
+** These jobs are coroutines and can be done in the same thread.
+   Coroutine means a job.
+
+** Suspend means that this method can be use in a coroutine
+
+**   Thread.sleep(1000) sleep function sleeps the current thread
+     and coroutines in the current thread
+
+     delay(1000) function delays the current coroutine
+
+** There are 3 different Coroutine Scopes
+
+   IO - network calls, room persistance transactions
+   Main - Main means main thread
+   Default - for heavy computational work, like filter large list
+
+** Functions in the same coroutine scope waits result of each other
+
