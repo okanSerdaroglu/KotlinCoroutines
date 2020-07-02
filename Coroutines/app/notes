@@ -48,3 +48,93 @@ and does not affect it's other children
 
 -----------------------------------------------------------------------------------
 
+
+** Coroutine is not a Thread, it is like a job. One thread contains multiple coroutines.
+
+     ----------------
+    |    Thread      |
+     ----------------
+    |---> Job #1 (coroutine 1)
+    |---> Job #2 (coroutine 2)
+    |---> Job #3 (coroutine 3)
+
+    These jobs are coroutines and can be done in the same thread. Coroutine means a job.
+
+
+** Kotlin coroutine keyword (can be background thread) : suspend (for example network call, dao methods)
+   Suspend functions are only allowed to be called from a coroutine or another suspend function
+
+** delay(1000) // delays the current coroutine
+   Thread.sleep(1000) // delays the all coroutines on thread
+
+** There are three different CoroutineScopes :  CoroutineScope(IO)
+
+    - IO : Network, Dao transaction
+    - Main : UI transaction
+    - Default : Heavy computational work so like you have to filter a large list
+
+** If you are launch a scope with CoroutineScope(IO) and if you need to access UI components,
+   you should be on the Main thread for access UI components :
+           withContext(Main) {
+               setNewText(input)
+           }
+
+** CompletableJob, extends Job. CompletableJob has 2 functions :
+        private lateinit var job: CompletableJob
+
+        job.complete() -> you can cancel the job and check status
+        job.completeExceptionally(exception = Throwable("Canceled job!")) -> you can throw exception when job canceled
+
+** You can call new function your job when canceled or completed :
+
+** val scope = CoroutineScope(IO).launch {
+
+   }
+   scope.cancel() // all jobs canceled
+
+   ---------
+
+   val scope = CoroutineScope(IO + job).launch {
+
+   }
+   job.cancel()  // one job canceled
+
+** Execute parallel background task :
+   - Suspend functions in the same coroutine scope wait completion each other
+   - But Jobs in the same coroutine scope don't wait each other, they work the same time
+   - async - await : async() is a blocking call (similar to the job pattern with job.join())
+         1) IF you don't call await(), it does not wait for the result
+         2) Calling await() on both these Deferred values will EXECUTE THEM IN PARALLEL.
+         But the RESULTS won't be published until the last result is available (in this case that's result2)
+
+
+** Sequential background tasks :
+        val result1 = async {
+
+        }.await()
+
+        val result2 = async {
+          // send result 1
+        }.await()
+
+**  If you work below first code on onCreate :
+
+       // UI Thread is completely blocked, this is a thread
+    -> Thread.sleep(3000)
+
+       // UI Thread is not blocked, this is a job on the thread.
+    -> CoroutineScope(Main).launch {
+           println("Current thread : ${Thread.currentThread().name}")
+           delay(3000)
+       }
+
+
+** if runBlocking works all other jobs wait completion the runBlocking scopes.
+   When runBlocking completed, other jobs continue work.
+
+** The parent job is canceled the children jobs within that parent will also be canceled this is
+a default coroutine.
+
+** SupervisorJob : A failure or cancellation of a child does not cause the supervisor job to fail
+and does not affect its other children
+
