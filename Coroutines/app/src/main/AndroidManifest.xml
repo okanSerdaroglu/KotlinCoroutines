@@ -12,13 +12,13 @@
         <activity android:name=".SupervisorJob"></activity>
         <activity android:name=".GlobalScopeActivity" />
         <activity android:name=".RunBlocking" />
-        <activity android:name=".SequentialBackgroundTask" />
-        <activity android:name=".FreezeUIActivity" />
         <activity android:name=".AsyncAndWait" />
+        <activity android:name=".FreezeUIActivity" />
         <activity android:name=".JobActivity" />
         <activity android:name=".TimeoutActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".StructuredConcurrencyActivity">
+        <activity android:name=".StructuredConcurrencyActivity" />
+        <activity android:name=".SequentialBackgroundTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -25,6 +25,11 @@ class SequentialBackgroundTask : AppCompatActivity() {
 
     }
 
+    /**
+     * Normally, when you launch 2 jobs they work parallel. Also when you async them
+     * they work parallel. But when you add await function end of it these jobs wait
+     * each other and work sequentially
+     */
     private fun fakeApiRequest() {
         CoroutineScope(IO).launch {
             val executionTime = measureTimeMillis {
