@@ -40,5 +40,8 @@
     Suspend functions in the same coroutine scope waits each other, however
     jobs don't wait each other in the same coroutineScope
 
+----- Supervisor job --------
 
+A failure or cancellation of a child does not cause the supervisor job to fail
+and does not affect it's other children
 
