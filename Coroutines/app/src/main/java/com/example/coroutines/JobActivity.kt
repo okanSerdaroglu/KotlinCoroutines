@@ -1,15 +1,16 @@
 package com.example.coroutines
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_job.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 
 class JobActivity : AppCompatActivity() {
+
 
     private val PROGRESS_MAX = 100
     private val PROGRESS_START = 0
