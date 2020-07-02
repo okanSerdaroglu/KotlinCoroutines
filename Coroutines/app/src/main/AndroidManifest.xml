@@ -9,12 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FreezeUIActivity"></activity>
+        <activity android:name=".SequentialBackgroundTask"></activity>
+        <activity android:name=".FreezeUIActivity" />
         <activity android:name=".AsyncAndWait" />
         <activity android:name=".JobActivity" />
         <activity android:name=".TimeoutActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SequentialBackgroundTask">
+        <activity android:name=".RunBlocking">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
